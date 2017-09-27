@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Sign Up!</title>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
+    </head>
+    <body>
+        <div class='container' style='padding:1em'>
+            <div class='row'>
+                <form action="{% url 'login:create'%}" method='POST'>
+                    {%csrf_token%}
+                    <div class='six columns'>
+                        <h1>Sign Up</h1>
+                        {{form}}
+                    </div>
+                    <div class='twelve columns'>
+                        <input class='button-primary' type='submit' value='Create User'>      
+                    </div>         
+                    <div class='twelve columns'>
+                        <h4>Already a member? <a href="{% url 'login:login'%}">Login</a></h4>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </body>
+</html>
+

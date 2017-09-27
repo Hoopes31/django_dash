@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Login</title>
+        <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
+    </head>
+    <body>
+        <div class='container' style='padding:1em'>
+            <div class='row'>
+                <form action="{% url 'login:auth'%}" method='POST'>
+                    <div class='six columns'>
+                        <h1>Login</h1>
+                        {%csrf_token%}
+                        {{form}}
+                    </div>
+                    <div class='twelve columns'>
+                        <input class='button-primary' type='submit' value='Login User'>      
+                    </div> 
+                </form>         
+                <div class='twelve columns'>
+                </div>
+                <div class='twelve columns'>
+                    <h4>Not a member yet? <a href="{% url 'login:sign_up'%}">Sign Up!</a></h4>
+                </div>
+                <div class='twelve columns'>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
