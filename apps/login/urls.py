@@ -9,6 +9,6 @@ urlpatterns = [
     url(r'^logout', views.logout, name='logout'),
     url(r'^sign_up', views.sign_up, name='sign_up'),
     url(r'^create', views.create_user, name='create'),
-    url(r'^welcome/(?P<name>[a-zA-Z]+$)', views.welcome, name='welcome'),
+    url(r'^welcome/(?P<name>[a-zA-Z0-9_]*$)', views.welcome, name='welcome'),
 ]
 

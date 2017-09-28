@@ -7,9 +7,9 @@
         <div class='container' style='padding:1em'>
             <div class='row'>
                 <form action="{% url 'login:auth'%}" method='POST'>
+                    {%csrf_token%}
                     <div class='six columns'>
                         <h1>Login</h1>
-                        {%csrf_token%}
                         {{form}}
                     </div>
                     <div class='twelve columns'>

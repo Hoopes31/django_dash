@@ -1,13 +1,15 @@
 <html>
     <head>
         <title>Dashboard</title>
+        <style>
+        </style>
         <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'/>
     </head>
     <body>
         <div class="container" style='padding:1em'>
             <div class='row'>
-                <div class='tweleve columns'>
-                    <h1>Users</h1>
+                <div class='tweleve columns' id='header'>
+                    <h2>Admin Dashboard</h2>
                 </div>
             </div>
             <div class='row'>
@@ -31,6 +33,10 @@
                     <h5>Privileges</h5>
                 <hr>
                 </div>
+                <div class='two columns'>
+                    <h5>Actions</h5>  
+                <hr>                 
+                </div>
             </div>
             {% for user in users %}
             <div class='row'>
@@ -52,6 +58,10 @@
                     {%else%}
                     <p>User</p>
                     {%endif%}
+                </div>
+                <div class='two columns'>
+                    <a href="/dash/delete_check/{{user.id}}">Remove</a>
+                    <a href="/dash/edit/{{user.id}}">Edit</a>
                 </div>
             </div>
             {% endfor %}

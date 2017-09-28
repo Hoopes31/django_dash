@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 # Set up login permissions by default
 # Set up Decrypt
@@ -15,6 +16,7 @@ def login_page(request):
     form = LoginForm()
     return render(request, 'login/login.html', {'form':form})
 
+@login_required
 def welcome(request, name):
     return render(request, 'login/welcome.html', {'name':name})
 
@@ -32,14 +34,25 @@ def create_user(request):
 
     # Clean form, Create User, Hash Password, Save Data
     if form.is_valid():
+        username = request.POST['username'].lower()
+        password = request.POST['password'].lower()
         form = form.cleaned_data
+        # Create user
         user = User.objects.create(username=form['username'].lower(), first_name=form['first_name'].lower(), last_name=form['last_name'].lower(), 
-        email=form['email'].lower())
+        email=form['email'])
         user.set_password(form['password'])
+
+        # Set special permissions to user 1
         if user.id == 1:
-            user.is_staff = True
+            user.is_staff=True
+
+        # Save user
         user.save()
-        return redirect('login:welcome', name = form['first_name'])
+        # Optional User Auto Login on SignUp
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('login:welcome', name = username)
     
     else:
         return render(request, 'login/sign_up.html', {'form':form})
