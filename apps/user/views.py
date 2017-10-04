@@ -68,6 +68,5 @@ def auth(request):
             return redirect('login:welcome', name = username)
     
     messages.error(request, 'Login Invalid')
-    
-    return redirect('login:login')
+    return render(request, 'login/login.html', {'form':form})
 

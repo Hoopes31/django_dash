@@ -23,68 +23,13 @@ class UserForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError(
-                'Passwords must match!'
+                {'confirm_password': ['Passwords must match!',]}
             )
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError(
-                'Email address must be unique.'
+                {'email': ['Email address must be unique.',]}
             )
 
 class LoginForm(forms.Form):
     username=forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Username', 'class':'u-full-width'}), label='')
     password=forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Password', 'class':'u-full-width'}), label='')
-
-    def clean(self):
-        cleaned_data = super(LoginForm, self).clean()
-        username = cleaned_data.get('username')        
-        password = cleaned_data.get('password')
-
-        if username < 1:
-            raise forms.ValidationError(
-                'You must enter a username'
-            )
-        if password < 1:
-            raise forms.ValidationError(
-                'You must enter a username'
-            )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class Sign_Up(forms.Form):
-#     username = forms.CharField(min_length=2, max_length=150, required=True,
-#     widget=forms.TextInput(attrs={'placeholder':'Username', 'class':'u-full-width'}), label='')
-
-#     first_name = forms.CharField(min_length=2, max_length=255, required=True, 
-#     widget=forms.TextInput(attrs={'placeholder':'First Name', 'class':'u-full-width'}), label='')
-
-#     last_name = forms.CharField(min_length=2, max_length=255, required=True, 
-#     widget=forms.TextInput(attrs={'placeholder':'Last Name', 'class':'u-full-width'}), label='')
-
-#     email = forms.EmailField(min_length=2, max_length=255, required=True, 
-#     widget=forms.TextInput(attrs={'placeholder':'Email', 'class':'u-full-width'}), label='')
-
-#     password = forms.CharField(min_length=2, max_length=80, required=True,
-#     widget=forms.PasswordInput(attrs={'placeholder':'Password', 'class':'u-full-width'}), label='')
-
-#     password_confirm = forms.CharField(min_length=2, max_length=80, required=True,
-#     widget=forms.PasswordInput(attrs={'placeholder':'Password Confirm', 'class':'u-full-width'}), label='')
-
-# class Login(forms.Form):
-#     email = forms.EmailField(min_length=2, max_length=255, required=True,
-#     widget=forms.EmailInput(attrs={'placeholder':'Email', 'class':'u-full-width'}), label='')
-
-#     password = forms.CharField(min_length=2, max_length=80, required=True,
-#     widget=forms.PasswordInput(attrs={'placeholder':'Password', 'class':'u-full-width'}), label='')
