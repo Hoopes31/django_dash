@@ -1,2 +1,4 @@
 *.pyc
-djangoEnv/
+venv/
+*.DS_Store
+.vscode/

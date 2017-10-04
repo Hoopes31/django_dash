@@ -6,19 +6,20 @@
     <body>
         <div class='container' style='padding:1em'>
             <div class='row'>
-                <form action="{% url 'login:create'%}" method='POST'>
-                    <div class='six columns'>
+                <div class='three columns'><p></p></div>     
+                <div class='six columns'>                        
+                    <form action="{% url 'login:create'%}" method='POST'></form>
                         <h1>Sign Up</h1>
-                            {%csrf_token%}
-                            {{form}}
-                    </div>
-                    <div class='twelve columns'>
-                        <input class='button-primary' type='submit' value='Create User'>      
-                    </div>         
+                        {%csrf_token%}
+                        {{form}}
+                        <div class='twelve columns'>
+                            <input class='button-primary' type='submit' value='Create User'>      
+                        </div>
+                    </form>
                     <div class='twelve columns'>
                         <h4>Already a member? <a href="{% url 'login:login'%}">Login</a></h4>
                     </div>
-                </form> 
+                </div>
             </div>
         </div>
     </body>

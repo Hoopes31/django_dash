@@ -19,6 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^$', include('apps.dressing.urls', namespace='dressing')),
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', include('apps.login.urls', namespace='login')),
+    url(r'^login/', include('apps.user.urls', namespace='login')),
     url(r'^dash/', include('apps.admin_dash.urls', namespace='dash')),
 ]
